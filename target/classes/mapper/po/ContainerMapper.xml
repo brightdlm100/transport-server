@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hyd.domain.po.mapper.ContainerMapper" >
+<mapper namespace="com.hyd.dao.po.mapper.ContainerMapper" >
   <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.Container" >
     <id column="containerID" property="containerid" jdbcType="VARCHAR" />
     <result column="shipOrderID" property="shiporderid" jdbcType="VARCHAR" />

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hyd.domain.po.mapper.DriverMapper" >
-  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.Driver" >
-    <id column="driverID" property="driverid" jdbcType="INTEGER" />
-    <result column="carID" property="carid" jdbcType="VARCHAR" />
+<mapper namespace="com.hyd.dao.po.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.Customer" >
+    <id column="customerID" property="customerid" jdbcType="INTEGER" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="loc" property="loc" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="weixin" property="weixin" jdbcType="VARCHAR" />
   </resultMap>
@@ -67,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    driverID, carID, tel, email, weixin
+    customerID, tel, loc, email, weixin
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.DriverExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.CustomerExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from driver
+    from customer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,36 +86,36 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from driver
-    where driverID = #{driverid,jdbcType=INTEGER}
+    from customer
+    where customerID = #{customerid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from driver
-    where driverID = #{driverid,jdbcType=INTEGER}
+    delete from customer
+    where customerID = #{customerid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.DriverExample" >
-    delete from driver
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.CustomerExample" >
+    delete from customer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hyd.domain.po.entity.Driver" >
-    insert into driver (driverID, carID, tel, 
+  <insert id="insert" parameterType="com.hyd.domain.po.entity.Customer" >
+    insert into customer (customerID, tel, loc, 
       email, weixin)
-    values (#{driverid,jdbcType=INTEGER}, #{carid,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+    values (#{customerid,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.Driver" >
-    insert into driver
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.Customer" >
+    insert into customer
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="driverid != null" >
-        driverID,
-      </if>
-      <if test="carid != null" >
-        carID,
+      <if test="customerid != null" >
+        customerID,
       </if>
       <if test="tel != null" >
         tel,
+      </if>
+      <if test="loc != null" >
+        loc,
       </if>
       <if test="email != null" >
         email,
@@ -125,14 +125,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="driverid != null" >
-        #{driverid,jdbcType=INTEGER},
-      </if>
-      <if test="carid != null" >
-        #{carid,jdbcType=VARCHAR},
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
       </if>
       <if test="tel != null" >
         #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null" >
+        #{loc,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
@@ -142,23 +142,23 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hyd.domain.po.entity.DriverExample" resultType="java.lang.Integer" >
-    select count(*) from driver
+  <select id="countByExample" parameterType="com.hyd.domain.po.entity.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from customer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update driver
+    update customer
     <set >
-      <if test="record.driverid != null" >
-        driverID = #{record.driverid,jdbcType=INTEGER},
-      </if>
-      <if test="record.carid != null" >
-        carID = #{record.carid,jdbcType=VARCHAR},
+      <if test="record.customerid != null" >
+        customerID = #{record.customerid,jdbcType=INTEGER},
       </if>
       <if test="record.tel != null" >
         tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loc != null" >
+        loc = #{record.loc,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null" >
         email = #{record.email,jdbcType=VARCHAR},
@@ -172,24 +172,24 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update driver
-    set driverID = #{record.driverid,jdbcType=INTEGER},
-      carID = #{record.carid,jdbcType=VARCHAR},
+    update customer
+    set customerID = #{record.customerid,jdbcType=INTEGER},
       tel = #{record.tel,jdbcType=VARCHAR},
+      loc = #{record.loc,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       weixin = #{record.weixin,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.Driver" >
-    update driver
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.Customer" >
+    update customer
     <set >
-      <if test="carid != null" >
-        carID = #{carid,jdbcType=VARCHAR},
-      </if>
       <if test="tel != null" >
         tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null" >
+        loc = #{loc,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
@@ -198,14 +198,14 @@
         weixin = #{weixin,jdbcType=VARCHAR},
       </if>
     </set>
-    where driverID = #{driverid,jdbcType=INTEGER}
+    where customerID = #{customerid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.Driver" >
-    update driver
-    set carID = #{carid,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.Customer" >
+    update customer
+    set tel = #{tel,jdbcType=VARCHAR},
+      loc = #{loc,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       weixin = #{weixin,jdbcType=VARCHAR}
-    where driverID = #{driverid,jdbcType=INTEGER}
+    where customerID = #{customerid,jdbcType=INTEGER}
   </update>
 </mapper>
