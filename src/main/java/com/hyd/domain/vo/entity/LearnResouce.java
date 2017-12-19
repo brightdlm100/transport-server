@@ -1,4 +1,4 @@
-package com.hyd.domain.repository;
+package com.hyd.domain.vo.entity;
 
 
 public class LearnResouce {

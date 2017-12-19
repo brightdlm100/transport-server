@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyd.domain.po.mapper.TOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.TOrder" >
+    <id column="shipOrderID" property="shiporderid" jdbcType="VARCHAR" />
+    <result column="companyID" property="companyid" jdbcType="VARCHAR" />
+    <result column="customerID" property="customerid" jdbcType="INTEGER" />
+    <result column="revertLoc" property="revertloc" jdbcType="VARCHAR" />
+    <result column="voyage" property="voyage" jdbcType="VARCHAR" />
+    <result column="service_term" property="serviceTerm" jdbcType="VARCHAR" />
+    <result column="ETD" property="etd" jdbcType="DATE" />
+    <result column="ETA" property="eta" jdbcType="DATE" />
+    <result column="CY_Opening_Date" property="cyOpeningDate" jdbcType="DATE" />
+    <result column="SI_cutoff_date" property="siCutoffDate" jdbcType="DATE" />
+    <result column="CY_closing_date" property="cyClosingDate" jdbcType="DATE" />
+    <result column="commodity" property="commodity" jdbcType="VARCHAR" />
+    <result column="receipt_place" property="receiptPlace" jdbcType="VARCHAR" />
+    <result column="Loding_port" property="lodingPort" jdbcType="VARCHAR" />
+    <result column="dischange_port" property="dischangePort" jdbcType="VARCHAR" />
+    <result column="delivery_place" property="deliveryPlace" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    shipOrderID, companyID, customerID, revertLoc, voyage, service_term, ETD, ETA, CY_Opening_Date, 
+    SI_cutoff_date, CY_closing_date, commodity, receipt_place, Loding_port, dischange_port, 
+    delivery_place
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.TOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_order
+    where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.TOrderExample" >
+    delete from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hyd.domain.po.entity.TOrder" >
+    insert into t_order (shipOrderID, companyID, customerID, 
+      revertLoc, voyage, service_term, 
+      ETD, ETA, CY_Opening_Date, SI_cutoff_date, 
+      CY_closing_date, commodity, receipt_place, 
+      Loding_port, dischange_port, delivery_place
+      )
+    values (#{shiporderid,jdbcType=VARCHAR}, #{companyid,jdbcType=VARCHAR}, #{customerid,jdbcType=INTEGER}, 
+      #{revertloc,jdbcType=VARCHAR}, #{voyage,jdbcType=VARCHAR}, #{serviceTerm,jdbcType=VARCHAR}, 
+      #{etd,jdbcType=DATE}, #{eta,jdbcType=DATE}, #{cyOpeningDate,jdbcType=DATE}, #{siCutoffDate,jdbcType=DATE}, 
+      #{cyClosingDate,jdbcType=DATE}, #{commodity,jdbcType=VARCHAR}, #{receiptPlace,jdbcType=VARCHAR}, 
+      #{lodingPort,jdbcType=VARCHAR}, #{dischangePort,jdbcType=VARCHAR}, #{deliveryPlace,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.TOrder" >
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shiporderid != null" >
+        shipOrderID,
+      </if>
+      <if test="companyid != null" >
+        companyID,
+      </if>
+      <if test="customerid != null" >
+        customerID,
+      </if>
+      <if test="revertloc != null" >
+        revertLoc,
+      </if>
+      <if test="voyage != null" >
+        voyage,
+      </if>
+      <if test="serviceTerm != null" >
+        service_term,
+      </if>
+      <if test="etd != null" >
+        ETD,
+      </if>
+      <if test="eta != null" >
+        ETA,
+      </if>
+      <if test="cyOpeningDate != null" >
+        CY_Opening_Date,
+      </if>
+      <if test="siCutoffDate != null" >
+        SI_cutoff_date,
+      </if>
+      <if test="cyClosingDate != null" >
+        CY_closing_date,
+      </if>
+      <if test="commodity != null" >
+        commodity,
+      </if>
+      <if test="receiptPlace != null" >
+        receipt_place,
+      </if>
+      <if test="lodingPort != null" >
+        Loding_port,
+      </if>
+      <if test="dischangePort != null" >
+        dischange_port,
+      </if>
+      <if test="deliveryPlace != null" >
+        delivery_place,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shiporderid != null" >
+        #{shiporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="revertloc != null" >
+        #{revertloc,jdbcType=VARCHAR},
+      </if>
+      <if test="voyage != null" >
+        #{voyage,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTerm != null" >
+        #{serviceTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="etd != null" >
+        #{etd,jdbcType=DATE},
+      </if>
+      <if test="eta != null" >
+        #{eta,jdbcType=DATE},
+      </if>
+      <if test="cyOpeningDate != null" >
+        #{cyOpeningDate,jdbcType=DATE},
+      </if>
+      <if test="siCutoffDate != null" >
+        #{siCutoffDate,jdbcType=DATE},
+      </if>
+      <if test="cyClosingDate != null" >
+        #{cyClosingDate,jdbcType=DATE},
+      </if>
+      <if test="commodity != null" >
+        #{commodity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptPlace != null" >
+        #{receiptPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lodingPort != null" >
+        #{lodingPort,jdbcType=VARCHAR},
+      </if>
+      <if test="dischangePort != null" >
+        #{dischangePort,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPlace != null" >
+        #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hyd.domain.po.entity.TOrderExample" resultType="java.lang.Integer" >
+    select count(*) from t_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_order
+    <set >
+      <if test="record.shiporderid != null" >
+        shipOrderID = #{record.shiporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyid != null" >
+        companyID = #{record.companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerid != null" >
+        customerID = #{record.customerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.revertloc != null" >
+        revertLoc = #{record.revertloc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voyage != null" >
+        voyage = #{record.voyage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceTerm != null" >
+        service_term = #{record.serviceTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etd != null" >
+        ETD = #{record.etd,jdbcType=DATE},
+      </if>
+      <if test="record.eta != null" >
+        ETA = #{record.eta,jdbcType=DATE},
+      </if>
+      <if test="record.cyOpeningDate != null" >
+        CY_Opening_Date = #{record.cyOpeningDate,jdbcType=DATE},
+      </if>
+      <if test="record.siCutoffDate != null" >
+        SI_cutoff_date = #{record.siCutoffDate,jdbcType=DATE},
+      </if>
+      <if test="record.cyClosingDate != null" >
+        CY_closing_date = #{record.cyClosingDate,jdbcType=DATE},
+      </if>
+      <if test="record.commodity != null" >
+        commodity = #{record.commodity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiptPlace != null" >
+        receipt_place = #{record.receiptPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lodingPort != null" >
+        Loding_port = #{record.lodingPort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dischangePort != null" >
+        dischange_port = #{record.dischangePort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryPlace != null" >
+        delivery_place = #{record.deliveryPlace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_order
+    set shipOrderID = #{record.shiporderid,jdbcType=VARCHAR},
+      companyID = #{record.companyid,jdbcType=VARCHAR},
+      customerID = #{record.customerid,jdbcType=INTEGER},
+      revertLoc = #{record.revertloc,jdbcType=VARCHAR},
+      voyage = #{record.voyage,jdbcType=VARCHAR},
+      service_term = #{record.serviceTerm,jdbcType=VARCHAR},
+      ETD = #{record.etd,jdbcType=DATE},
+      ETA = #{record.eta,jdbcType=DATE},
+      CY_Opening_Date = #{record.cyOpeningDate,jdbcType=DATE},
+      SI_cutoff_date = #{record.siCutoffDate,jdbcType=DATE},
+      CY_closing_date = #{record.cyClosingDate,jdbcType=DATE},
+      commodity = #{record.commodity,jdbcType=VARCHAR},
+      receipt_place = #{record.receiptPlace,jdbcType=VARCHAR},
+      Loding_port = #{record.lodingPort,jdbcType=VARCHAR},
+      dischange_port = #{record.dischangePort,jdbcType=VARCHAR},
+      delivery_place = #{record.deliveryPlace,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.TOrder" >
+    update t_order
+    <set >
+      <if test="companyid != null" >
+        companyID = #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="customerid != null" >
+        customerID = #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="revertloc != null" >
+        revertLoc = #{revertloc,jdbcType=VARCHAR},
+      </if>
+      <if test="voyage != null" >
+        voyage = #{voyage,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTerm != null" >
+        service_term = #{serviceTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="etd != null" >
+        ETD = #{etd,jdbcType=DATE},
+      </if>
+      <if test="eta != null" >
+        ETA = #{eta,jdbcType=DATE},
+      </if>
+      <if test="cyOpeningDate != null" >
+        CY_Opening_Date = #{cyOpeningDate,jdbcType=DATE},
+      </if>
+      <if test="siCutoffDate != null" >
+        SI_cutoff_date = #{siCutoffDate,jdbcType=DATE},
+      </if>
+      <if test="cyClosingDate != null" >
+        CY_closing_date = #{cyClosingDate,jdbcType=DATE},
+      </if>
+      <if test="commodity != null" >
+        commodity = #{commodity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptPlace != null" >
+        receipt_place = #{receiptPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="lodingPort != null" >
+        Loding_port = #{lodingPort,jdbcType=VARCHAR},
+      </if>
+      <if test="dischangePort != null" >
+        dischange_port = #{dischangePort,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPlace != null" >
+        delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.TOrder" >
+    update t_order
+    set companyID = #{companyid,jdbcType=VARCHAR},
+      customerID = #{customerid,jdbcType=INTEGER},
+      revertLoc = #{revertloc,jdbcType=VARCHAR},
+      voyage = #{voyage,jdbcType=VARCHAR},
+      service_term = #{serviceTerm,jdbcType=VARCHAR},
+      ETD = #{etd,jdbcType=DATE},
+      ETA = #{eta,jdbcType=DATE},
+      CY_Opening_Date = #{cyOpeningDate,jdbcType=DATE},
+      SI_cutoff_date = #{siCutoffDate,jdbcType=DATE},
+      CY_closing_date = #{cyClosingDate,jdbcType=DATE},
+      commodity = #{commodity,jdbcType=VARCHAR},
+      receipt_place = #{receiptPlace,jdbcType=VARCHAR},
+      Loding_port = #{lodingPort,jdbcType=VARCHAR},
+      dischange_port = #{dischangePort,jdbcType=VARCHAR},
+      delivery_place = #{deliveryPlace,jdbcType=VARCHAR}
+    where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
+  </update>
+</mapper>

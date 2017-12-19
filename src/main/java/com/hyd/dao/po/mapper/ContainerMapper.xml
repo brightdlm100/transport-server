@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyd.domain.po.mapper.ContainerMapper" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.Container" >
+    <id column="containerID" property="containerid" jdbcType="VARCHAR" />
+    <result column="shipOrderID" property="shiporderid" jdbcType="VARCHAR" />
+    <result column="driverID" property="driverid" jdbcType="INTEGER" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="cType" property="ctype" jdbcType="CHAR" />
+    <result column="cSize" property="csize" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    containerID, shipOrderID, driverID, model, cType, cSize
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.ContainerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from container
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from container
+    where containerID = #{containerid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from container
+    where containerID = #{containerid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.ContainerExample" >
+    delete from container
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hyd.domain.po.entity.Container" >
+    insert into container (containerID, shipOrderID, driverID, 
+      model, cType, cSize)
+    values (#{containerid,jdbcType=VARCHAR}, #{shiporderid,jdbcType=VARCHAR}, #{driverid,jdbcType=INTEGER}, 
+      #{model,jdbcType=VARCHAR}, #{ctype,jdbcType=CHAR}, #{csize,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.Container" >
+    insert into container
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="containerid != null" >
+        containerID,
+      </if>
+      <if test="shiporderid != null" >
+        shipOrderID,
+      </if>
+      <if test="driverid != null" >
+        driverID,
+      </if>
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="ctype != null" >
+        cType,
+      </if>
+      <if test="csize != null" >
+        cSize,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="containerid != null" >
+        #{containerid,jdbcType=VARCHAR},
+      </if>
+      <if test="shiporderid != null" >
+        #{shiporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="driverid != null" >
+        #{driverid,jdbcType=INTEGER},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=CHAR},
+      </if>
+      <if test="csize != null" >
+        #{csize,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hyd.domain.po.entity.ContainerExample" resultType="java.lang.Integer" >
+    select count(*) from container
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update container
+    <set >
+      <if test="record.containerid != null" >
+        containerID = #{record.containerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shiporderid != null" >
+        shipOrderID = #{record.shiporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driverid != null" >
+        driverID = #{record.driverid,jdbcType=INTEGER},
+      </if>
+      <if test="record.model != null" >
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctype != null" >
+        cType = #{record.ctype,jdbcType=CHAR},
+      </if>
+      <if test="record.csize != null" >
+        cSize = #{record.csize,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update container
+    set containerID = #{record.containerid,jdbcType=VARCHAR},
+      shipOrderID = #{record.shiporderid,jdbcType=VARCHAR},
+      driverID = #{record.driverid,jdbcType=INTEGER},
+      model = #{record.model,jdbcType=VARCHAR},
+      cType = #{record.ctype,jdbcType=CHAR},
+      cSize = #{record.csize,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.Container" >
+    update container
+    <set >
+      <if test="shiporderid != null" >
+        shipOrderID = #{shiporderid,jdbcType=VARCHAR},
+      </if>
+      <if test="driverid != null" >
+        driverID = #{driverid,jdbcType=INTEGER},
+      </if>
+      <if test="model != null" >
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        cType = #{ctype,jdbcType=CHAR},
+      </if>
+      <if test="csize != null" >
+        cSize = #{csize,jdbcType=CHAR},
+      </if>
+    </set>
+    where containerID = #{containerid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.Container" >
+    update container
+    set shipOrderID = #{shiporderid,jdbcType=VARCHAR},
+      driverID = #{driverid,jdbcType=INTEGER},
+      model = #{model,jdbcType=VARCHAR},
+      cType = #{ctype,jdbcType=CHAR},
+      cSize = #{csize,jdbcType=CHAR}
+    where containerID = #{containerid,jdbcType=VARCHAR}
+  </update>
+</mapper>
