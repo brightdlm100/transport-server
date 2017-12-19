@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
 import com.alibaba.druid.pool.DruidDataSource;
 
 @SpringBootApplication
-
+//@	ComponentScan(basePackages= {"controller","dao.po.mapper","controller.base","service.base.impl"})
 public class Application {
 
     public static void main(String[] args) {

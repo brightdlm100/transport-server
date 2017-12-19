@@ -102,8 +102,7 @@
   </delete>
   <insert id="insert" parameterType="com.hyd.domain.po.entity.Company" >
     insert into company (companyID, cname, loc, 
-      tel, email, fox)
-    values (#{companyid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, 
+      tel, email, fox)values (#{companyid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{fox,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.Company" >
