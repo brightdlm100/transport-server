@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hyd.dao.po.mapper.ContainerCountMapper" >
-  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.ContainerCount" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.ContainerCount" >
     <id column="countID" property="countid" jdbcType="VARCHAR" />
     <result column="companyID" property="companyid" jdbcType="VARCHAR" />
     <result column="cType" property="ctype" jdbcType="CHAR" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     countID, companyID, cType, model, cSize, cNumber
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.ContainerCountExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.ContainerCountExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,19 +94,19 @@
     delete from container_count
     where countID = #{countid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.ContainerCountExample" >
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.ContainerCountExample" >
     delete from container_count
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hyd.domain.po.entity.ContainerCount" >
+  <insert id="insert" parameterType="com.hyd.domain.po.ContainerCount" >
     insert into container_count (countID, companyID, cType, 
       model, cSize, cNumber)
     values (#{countid,jdbcType=VARCHAR}, #{companyid,jdbcType=VARCHAR}, #{ctype,jdbcType=CHAR}, 
       #{model,jdbcType=VARCHAR}, #{csize,jdbcType=CHAR}, #{cnumber,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.ContainerCount" >
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.ContainerCount" >
     insert into container_count
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="countid != null" >
@@ -149,7 +149,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hyd.domain.po.entity.ContainerCountExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.hyd.domain.po.ContainerCountExample" resultType="java.lang.Integer" >
     select count(*) from container_count
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -193,7 +193,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.ContainerCount" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.ContainerCount" >
     update container_count
     <set >
       <if test="companyid != null" >
@@ -214,7 +214,7 @@
     </set>
     where countID = #{countid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.ContainerCount" >
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.ContainerCount" >
     update container_count
     set companyID = #{companyid,jdbcType=VARCHAR},
       cType = #{ctype,jdbcType=CHAR},

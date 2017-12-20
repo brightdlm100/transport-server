@@ -13,6 +13,8 @@ public class Container {
 
     private String csize;
 
+    private String cstatus;
+
     public String getContainerid() {
         return containerid;
     }
@@ -59,5 +61,13 @@ public class Container {
 
     public void setCsize(String csize) {
         this.csize = csize == null ? null : csize.trim();
+    }
+
+    public String getCstatus() {
+        return cstatus;
+    }
+
+    public void setCstatus(String cstatus) {
+        this.cstatus = cstatus == null ? null : cstatus.trim();
     }
 }

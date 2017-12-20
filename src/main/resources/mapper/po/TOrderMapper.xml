@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hyd.dao.po.mapper.TOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.TOrder" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.TOrder" >
     <id column="shipOrderID" property="shiporderid" jdbcType="VARCHAR" />
     <result column="companyID" property="companyid" jdbcType="VARCHAR" />
     <result column="customerID" property="customerid" jdbcType="INTEGER" />
@@ -82,7 +82,7 @@
     SI_cutoff_date, CY_closing_date, commodity, receipt_place, Loding_port, dischange_port, 
     delivery_place
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.TOrderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.TOrderExample" >
     select
     <if test="distinct" >
       distinct
@@ -106,13 +106,13 @@
     delete from t_order
     where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.TOrderExample" >
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.TOrderExample" >
     delete from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hyd.domain.po.entity.TOrder" >
+  <insert id="insert" parameterType="com.hyd.domain.po.TOrder" >
     insert into t_order (shipOrderID, companyID, customerID, 
       revertLoc, voyage, service_term, 
       ETD, ETA, CY_Opening_Date, SI_cutoff_date, 
@@ -126,7 +126,7 @@
       #{lodingPort,jdbcType=VARCHAR}, #{dischangePort,jdbcType=VARCHAR}, #{deliveryPlace,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.TOrder" >
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.TOrder" >
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="shiporderid != null" >
@@ -229,7 +229,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hyd.domain.po.entity.TOrderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.hyd.domain.po.TOrderExample" resultType="java.lang.Integer" >
     select count(*) from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -313,7 +313,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.TOrder" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.TOrder" >
     update t_order
     <set >
       <if test="companyid != null" >
@@ -364,7 +364,7 @@
     </set>
     where shipOrderID = #{shiporderid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.TOrder" >
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.TOrder" >
     update t_order
     set companyID = #{companyid,jdbcType=VARCHAR},
       customerID = #{customerid,jdbcType=INTEGER},

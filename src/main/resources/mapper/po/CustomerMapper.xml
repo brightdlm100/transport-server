@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hyd.dao.po.mapper.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.hyd.domain.po.entity.Customer" >
+  <resultMap id="BaseResultMap" type="com.hyd.domain.po.Customer" >
     <id column="customerID" property="customerid" jdbcType="INTEGER" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="loc" property="loc" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     customerID, tel, loc, email, weixin
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.entity.CustomerExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyd.domain.po.CustomerExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from customer
     where customerID = #{customerid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hyd.domain.po.entity.CustomerExample" >
+  <delete id="deleteByExample" parameterType="com.hyd.domain.po.CustomerExample" >
     delete from customer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hyd.domain.po.entity.Customer" >
+  <insert id="insert" parameterType="com.hyd.domain.po.Customer" >
     insert into customer (customerID, tel, loc, 
       email, weixin)
     values (#{customerid,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hyd.domain.po.entity.Customer" >
+  <insert id="insertSelective" parameterType="com.hyd.domain.po.Customer" >
     insert into customer
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="customerid != null" >
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hyd.domain.po.entity.CustomerExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.hyd.domain.po.CustomerExample" resultType="java.lang.Integer" >
     select count(*) from customer
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.entity.Customer" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.domain.po.Customer" >
     update customer
     <set >
       <if test="tel != null" >
@@ -200,7 +200,7 @@
     </set>
     where customerID = #{customerid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.entity.Customer" >
+  <update id="updateByPrimaryKey" parameterType="com.hyd.domain.po.Customer" >
     update customer
     set tel = #{tel,jdbcType=VARCHAR},
       loc = #{loc,jdbcType=VARCHAR},

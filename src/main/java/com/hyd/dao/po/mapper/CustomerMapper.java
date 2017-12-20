@@ -1,10 +1,9 @@
 package com.hyd.dao.po.mapper;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.hyd.domain.po.Customer;
 import com.hyd.domain.po.CustomerExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
     int countByExample(CustomerExample example);

@@ -513,6 +513,76 @@ public class ContainerExample {
             addCriterion("cSize not between", value1, value2, "csize");
             return (Criteria) this;
         }
+
+        public Criteria andCstatusIsNull() {
+            addCriterion("cStatus is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusIsNotNull() {
+            addCriterion("cStatus is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusEqualTo(String value) {
+            addCriterion("cStatus =", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusNotEqualTo(String value) {
+            addCriterion("cStatus <>", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusGreaterThan(String value) {
+            addCriterion("cStatus >", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusGreaterThanOrEqualTo(String value) {
+            addCriterion("cStatus >=", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusLessThan(String value) {
+            addCriterion("cStatus <", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusLessThanOrEqualTo(String value) {
+            addCriterion("cStatus <=", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusLike(String value) {
+            addCriterion("cStatus like", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusNotLike(String value) {
+            addCriterion("cStatus not like", value, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusIn(List<String> values) {
+            addCriterion("cStatus in", values, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusNotIn(List<String> values) {
+            addCriterion("cStatus not in", values, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusBetween(String value1, String value2) {
+            addCriterion("cStatus between", value1, value2, "cstatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andCstatusNotBetween(String value1, String value2) {
+            addCriterion("cStatus not between", value1, value2, "cstatus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -2,14 +2,11 @@ package com.hyd.dao.po.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
+
 import com.hyd.domain.po.Company;
 import com.hyd.domain.po.CompanyExample;
 
-
-@Mapper
 public interface CompanyMapper {
     int countByExample(CompanyExample example);
 
